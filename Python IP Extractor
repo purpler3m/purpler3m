@@ -1,6 +1,6 @@
 *********************************************************************
-#python program to extract unique ips from a log file.  The idea is to open a file from a path, read it, extract ips using regex, remove duplicate with set
-#then create a list of unique ips, and return the list
+#python program to extract unique ips from a file.  The idea is to open a file from a path, read it, extract ips using regex, remove duplicate with set
+#then create a list of unique ips, and return the list. 
 
 import pathlib
 import re
