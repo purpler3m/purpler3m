@@ -1,0 +1,43 @@
+import requests
+import pathlib
+
+# VirusTotal API key
+key = ''
+
+def main():
+    def vt_domain():
+
+# Read Domains from text file.
+        with pathlib.Path(r'').open('r') as fh:
+            domains = fh.readlines()
+
+# Iterate through the list of domains via a "for" Loop from the text file and remove whitespace before or after each word
+        for domain in domains:
+            domain = domain.strip()
+
+# Submit Domain to VirusTotal via Get
+            headers = {'Accept': 'application/json', 'x-apikey': key}
+            response = requests.get('https://www.virustotal.com/api/v3/domains/'+domain, headers=headers)
+# Store the get response in JSON format
+            json_response = response.json()
+
+# Print interested fiedls from the JSON response
+            print("*" * 50)
+            print(f"Domain: {domain}")
+            print(response.json()['data']['attributes']['whois'])
+            print("*" * 50)
+            stats = (response.json()['data']['attributes']['last_analysis_stats'].items())
+            print(f"AV Detection statistics: ")
+            for stat in stats:
+                print(f"{stat}")
+            analysis_results = response.json()['data']['attributes']['last_analysis_results'].items()
+            for result in analysis_result:
+                for malicious in result:
+                    continue
+                if 'malicious' in malicious['category']:
+                    print(f"Detected MALICIOUS by: {malicious['engine_name']}")
+
+    vt_domain()
+
+if __name__ == "__main__":
+    main()
