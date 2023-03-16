@@ -1,15 +1,19 @@
-import requests
-import pathlib
+import requests, pathlib, argparse
 
 # VirusTotal API key
 key = ''
+
+argParser = argparse.ArgumentParser()
+argParser.add_argument("-f", "--filepath", help="input file that contains a list of domains", required=True)
+args = argParser.parse_args()
 
 def main():
     def vt_domain():
 
 # Read Domains from text file.
-        with pathlib.Path(r'').open('r') as fh:
-            domains = fh.readlines()
+# Open the file given as an argument and read each sentence line. This will create a list of each line in the document
+        with open(args.input, 'r') as f:
+            domains = f.readlines()
 
 # Iterate through the list of domains via a "for" Loop from the text file and remove whitespace before or after each word
         for domain in domains:
