@@ -8,7 +8,7 @@ argParser.add_argument("-f", "--filepath", help="input file that contains a list
 args = argParser.parse_args()
 
 def main():
-    def vt_domain():
+    def vt_domain_check():
 
 # Read Domains from text file.
 # Open the file given as an argument and read each sentence line. This will create a list of each line in the document
@@ -41,7 +41,7 @@ def main():
                 if 'malicious' in malicious['category']:
                     print(f"Detected MALICIOUS by: {malicious['engine_name']}")
 
-    vt_domain()
+    vt_domain_check()
 
 if __name__ == "__main__":
     main()
